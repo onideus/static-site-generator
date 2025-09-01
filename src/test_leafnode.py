@@ -25,21 +25,9 @@ class TestLeafNode(unittest.TestCase):
         node = LeafNode("a", "Click here", {"href": "https://example.com"})
         self.assertEqual('<a href="https://example.com">Click here</a>', node.to_html())
 
-    def test_a_tag_without_href_returns_none(self):
-        node = LeafNode("a", "Click here", {})
-        self.assertIsNone(node.to_html())
-
     def test_img_tag_with_src_renders(self):
         node = LeafNode("img", "An image", {"src": "image.png"})
-        self.assertEqual('<img src="image.png" alt="An image"/>', node.to_html())
-
-    def test_img_tag_without_src_returns_none(self):
-        node = LeafNode("img", "An image", {})
-        self.assertIsNone(node.to_html())
-
-    def test_unknown_tag_returns_none(self):
-        node = LeafNode("div", "content", {})
-        self.assertIsNone(node.to_html())
+        self.assertEqual('<img src="image.png" alt="An image" />', node.to_html())
 
 
 if __name__ == "__main__":

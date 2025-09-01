@@ -12,17 +12,9 @@ class LeafNode(HTMLNode):
         if self.tag is None:
             return self.value
 
-        if self.tag == "b" or self.tag == "p":
-            return f"<{self.tag}>{self.value}</{self.tag}>"
-
-        if self.tag == "a" and self.props is not None and "href" in self.props:
-            for k, v in self.props.items():
-                if k == "href":
-                    return f'<a href="{v}">{self.value}</a>'
-
         if self.tag == "img" and self.props is not None and "src" in self.props:
             for k, v in self.props.items():
                 if k == "src":
-                    return f'<img src="{v}" alt="{self.value}"/>'
+                    return f'<img src="{v}" alt="{self.value}" />'
 
-        return None
+        return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
